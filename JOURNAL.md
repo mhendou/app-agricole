@@ -8,3 +8,4 @@
 - 2026-11-14 T07 : écran clavier 5 chiffres, accès admin, cookie signé 180 j, proxy, set-codes, tests unitaires + 6 tests Playwright.
 - 2026-11-14 T08 : groupe (app), en-tête avec nom + sélecteur d'année (?annee=), barre d'onglets mobile, menu latéral bureau, typecheck via next typegen.
 - 2026-11-14 T09 : cartes Ventes/Dépenses/Solde, barre dépenses/ventes, histogramme mensuel Recharts, dernière récolte, pluie, paysage SVG + test e2e.
+- 2026-11-14 T10 : liste groupée par mois, icônes de catégorie, répartition en barres, bouton + admin.

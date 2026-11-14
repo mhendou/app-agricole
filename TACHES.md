@@ -18,7 +18,7 @@ Cocher `[x]` quand la tâche est finie et que `npm run check` passe. Une tâche 
 ## Phase 3 — Écrans de lecture
 - [x] T08 Mise en page : barre d'onglets mobile, menu latéral bureau, en-tête avec nom de l'exploitation et sélecteur d'année.
 - [x] T09 Écran Accueil (section 4.1) avec données réelles du mock.
-- [ ] T10 Écran Dépenses (4.2).
+- [x] T10 Écran Dépenses (4.2).
 - [ ] T11 Écran Ventes (4.3).
 - [ ] T12 Écran Récoltes (4.4), années perdues hachurées.
 

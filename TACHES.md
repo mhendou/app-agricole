@@ -3,7 +3,7 @@
 Cocher `[x]` quand la tâche est finie et que `npm run check` passe. Une tâche à la fois, dans l'ordre.
 
 ## Phase 0 — Socle
-- [ ] T01 Initialiser Next.js (App Router, TypeScript strict, Tailwind), ESLint, Prettier, Vitest, Playwright, git. Script `npm run check` = lint + typecheck + tests unitaires + build. Créer `.env.example`, `.gitignore` (inclure `.env*.local`, `.data-local/`), `DECISIONS.md`, `JOURNAL.md`.
+- [x] T01 Initialiser Next.js (App Router, TypeScript strict, Tailwind), ESLint, Prettier, Vitest, Playwright, git. Script `npm run check` = lint + typecheck + tests unitaires + build. Créer `.env.example`, `.gitignore` (inclure `.env*.local`, `.data-local/`), `DECISIONS.md`, `JOURNAL.md`.
 - [ ] T02 Jetons de design (section 3 de CLAUDE.md) dans Tailwind et CSS, polices Fraunces + Inter via next/font, composants de base : Carte, CarteChiffre, Badge, Bouton, BarreProportion, SelecteurAnnee, EtatVide, Chargement, Erreur. Page `/style` qui les montre tous.
 
 ## Phase 1 — Données

@@ -36,4 +36,6 @@ Cocher `[x]` quand la tâche est finie et que `npm run check` passe. Une tâche 
 - [x] T19 PWA : manifest, icônes rameau d'olivier (SVG puis PNG 192/512 et maskable), service worker avec cache des dernières données, mention « dernière mise à jour ».
 - [x] T20 Revue qualité : relire chaque écran en 360 px et 1280 px avec des captures Playwright enregistrées dans `docs/captures/`, corriger les défauts visuels, vérifier contrastes et tailles tactiles, accessibilité (labels, focus visible).
 - [x] T21 Documentation : `README.md` (lancer en local), `docs/mise-en-ligne.md` (étapes pas à pas : Google Cloud, compte de service, partage du Sheet, `init-sheet`, `seed-sheet`, variables Vercel, déploiement, cron), `docs/guide-famille.md` (installer l'appli sur Android et iPhone et entrer le code, en phrases très simples).
-- [ ] T22 Écrire `RAPPORT-MATIN.md` : ce qui marche, ce qui est bloqué, décisions prises, les 5 prochaines actions pour Mhend, et la commande pour voir l'appli (`npm run dev` puis http://localhost:3000, code 12345). Ajouter à la fin de ce fichier la ligne `TOUT EST TERMINÉ`.
+- [x] T22 Écrire `RAPPORT-MATIN.md` : ce qui marche, ce qui est bloqué, décisions prises, les 5 prochaines actions pour Mhend, et la commande pour voir l'appli (`npm run dev` puis http://localhost:3000, code 12345). Ajouter à la fin de ce fichier la ligne `TOUT EST TERMINÉ`.
+
+TOUT EST TERMINÉ

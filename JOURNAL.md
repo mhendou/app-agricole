@@ -20,3 +20,4 @@
 - 2026-11-14 T19 : manifest, icônes rameau (192/512/maskable/Apple), sw.js réseau-d'abord avec repli hors ligne, bandeau hors connexion, mention dernière mise à jour, tests e2e.
 - 2026-11-14 T20 : captures 360/1280 px dans docs/captures, axe-core AA OK, cibles ≥44 px OK, jeton argile-texte, axes lisibles en mobile.
 - 2026-11-14 T21 : README.md, docs/mise-en-ligne.md (Google Cloud → Vercel → cron), docs/guide-famille.md.
+- 2026-11-14 T22 : RAPPORT-MATIN.md écrit ; toutes les tâches terminées.

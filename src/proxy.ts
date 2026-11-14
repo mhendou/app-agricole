@@ -31,7 +31,11 @@ export function proxy(req: NextRequest) {
     }
     return NextResponse.redirect(new URL("/code", req.url));
   }
-  if (role !== "admin" && (pathname.startsWith("/admin") || pathname.startsWith("/api/admin"))) {
+  const reserveAdmin =
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/api/admin") ||
+    /^\/(depenses|ventes|recoltes)\/[^/]+/.test(pathname);
+  if (role !== "admin" && reserveAdmin) {
     if (pathname.startsWith("/api/")) {
       return NextResponse.json({ erreur: "Action réservée à l'administrateur." }, { status: 403 });
     }

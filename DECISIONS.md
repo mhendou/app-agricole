@@ -13,3 +13,4 @@
 - Écritures via routes API (`/api/depenses`, etc.) plutôt que server actions : testables directement (statuts 401/403) et vérifiées côté serveur.
 - Playwright utilise Microsoft Edge (`channel: msedge`) pour ne rien télécharger ; `npm run test:e2e` (hors `npm run check`).
 - Frankfurter (taux BCE) ne publie pas le dirham (réponse 404 vérifiée le 14/11/2026) : en pratique le taux vient du repli open.er-api.com (attribution « Exchange rates by ExchangeRate-API » à afficher), puis du taux de secours. Le code garde l'ordre demandé (Frankfurter d'abord).
+- Formulaires admin : écritures par routes API JSON (/api/depenses, /api/ventes, /api/recoltes) validées par zod (lib/saisie.ts) ; le montant en DH d'une vente est calculé côté serveur si absent, et conservé s'il est corrigé à la main. Pages d'écriture (/…/nouvelle, /…/[id]) réservées à l'admin par le proxy ET par la page.

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BarreProportion, Carte, CarteChiffre, EtatVide } from "@/components/ui";
+import { BandeauSucces } from "@/components/BandeauSucces";
 import { BoutonAjout } from "@/components/BoutonAjout";
 import { IconeCategorie } from "@/components/IconeCategorie";
 import { lireAnnee, type ParamsPage } from "@/lib/annee";
@@ -42,6 +43,7 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
 
   return (
     <div className="space-y-6">
+      <BandeauSucces ok={params.ok} />
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="font-titre text-3xl font-semibold text-olive-fonce">Dépenses {annee}</h1>
         {admin ? <BoutonAjout href="/depenses/nouvelle" libelle="Ajouter une dépense" /> : null}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Clock } from "lucide-react";
 import { Badge, BarreProportion, Carte, CarteChiffre, EtatVide } from "@/components/ui";
+import { BandeauSucces } from "@/components/BandeauSucces";
 import { BoutonAjout } from "@/components/BoutonAjout";
 import { lireAnnee, type ParamsPage } from "@/lib/annee";
 import { getRole } from "@/lib/auth/server";
@@ -59,6 +60,7 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
 
   return (
     <div className="space-y-6">
+      <BandeauSucces ok={params.ok} />
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="font-titre text-3xl font-semibold text-olive-fonce">Ventes {annee}</h1>
         {admin ? <BoutonAjout href="/ventes/nouvelle" libelle="Ajouter une vente" /> : null}

@@ -1,0 +1,23 @@
+date,client,ville,pays,litres,prix_unitaire,devise,taux_eur_mad,montant_dh,statut,mode_encaissement,note
+2026-03-15,Solbi Fatima,Rabat,Maroc,30,70,MAD,,2100,payé,virement,date approximative
+2026-03-15,Hicham Guedira,Rabat,Maroc,10,100,MAD,,1000,payé,virement,date approximative
+2026-03-15,Hakim,Rabat,Maroc,5,100,MAD,,500,payé,virement,date approximative
+2026-03-15,Nadia Lehzam,Rabat,Maroc,5,100,MAD,,500,payé,virement,date approximative
+2026-03-15,Margherite,Rabat,Maroc,4,100,MAD,,400,payé,virement,date approximative
+2026-03-15,Youssef (ami Yetto),Rabat,Maroc,10,70,MAD,,700,payé,virement,date approximative
+2026-03-15,Samia / Saad,Casablanca,Maroc,10,70,MAD,,70,payé,virement,montant encaissé 70 DH au lieu de 700 (oubli) — à vérifier
+2026-03-15,Issam,Rabat,Maroc,10,100,MAD,,1000,payé,virement,date approximative
+2026-03-15,Ada,Paris,France,5,120,MAD,,600,payé,virement,date approximative
+2026-03-15,Khalida,Paris,France,5,120,MAD,,600,payé,virement,date approximative
+2026-03-15,Dounia,Marseille,France,10,120,MAD,,1200,payé,virement,date approximative
+2026-03-15,Mihyar,Casablanca,Maroc,5,70,MAD,,350,payé,virement,date approximative
+2026-03-15,FZ,Rabat,Maroc,1,100,MAD,,100,payé,virement,date approximative
+2026-03-15,Karim Tazi,Casablanca,Maroc,5,100,MAD,,500,payé,virement,date approximative
+2026-03-15,Youssef Bennani,Casablanca,Maroc,1,100,MAD,,100,payé,virement,date approximative
+2026-03-15,Hamza (Marseille),Rabat,Maroc,3,120,MAD,,360,payé,virement,date approximative
+2026-03-15,Hortense,Rabat,Maroc,1,100,MAD,,100,payé,virement,date approximative
+2026-03-15,Soukaina,Rabat,Maroc,5,100,MAD,,500,payé,virement,date approximative
+2026-03-15,Mounir,Rabat,Maroc,5,60,MAD,,300,à encaisser,cash,pas reçu ? à vérifier
+2026-03-15,Malak,Rabat,Maroc,1,100,MAD,,100,à encaisser,,statut à vérifier
+2026-03-15,Salma Zaghloul,Rabat,Maroc,2,100,MAD,,200,à encaisser,,statut à vérifier
+2026-03-15,Khaoula,Rabat,Maroc,2,0,MAD,,0,offert,,

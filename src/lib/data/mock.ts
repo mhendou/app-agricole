@@ -23,7 +23,7 @@ import {
 type Fichier = "depenses" | "ventes" | "recoltes" | "pluie" | "parametres";
 
 /** Ajoute des ids D001… / V001… aux lignes d'un CSV qui n'en a pas. */
-function avecIds(rows: Cellule[][], prefixe: string): Cellule[][] {
+export function avecIds(rows: Cellule[][], prefixe: string): Cellule[][] {
   if (rows.length === 0) return rows;
   const [entete, ...corps] = rows;
   if (entete.map((h) => String(h).trim()).includes("id")) return rows;

@@ -3,3 +3,4 @@
 - 2026-11-14 T02 : tokens Tailwind, Fraunces/Inter, composants UI, page /style.
 - 2026-11-14 T03 : schémas zod, parsing tolérant (virgule, séries, désordre) + tests.
 - 2026-11-14 T04 : DataSource, mock JSON initialisé depuis CSV, CRUD par id, tests.
+- 2026-11-14 T05 : SheetsDataSource (cache 60 s, colonnes par nom, écriture par id), tests googleapis simulé, scripts init/seed non exécutés, docs/sheet.md.

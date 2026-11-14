@@ -1,0 +1,108 @@
+import { google, type sheets_v4 } from "googleapis";
+import type { Cellule } from "../parse";
+
+/** Petite interface au-dessus de l'API Google Sheets, facile à simuler dans les tests. */
+export interface SheetsClient {
+  /** batchGet en UNFORMATTED_VALUE : une matrice par onglet (ligne 0 = en-têtes). */
+  lireOnglets(onglets: string[]): Promise<Cellule[][][]>;
+  ajouterLignes(onglet: string, lignes: Cellule[][]): Promise<void>;
+  /** Écrit des lignes entières (numéros de ligne 1-based). */
+  ecrireLignes(maj: { onglet: string; ligne: number; valeurs: Cellule[] }[]): Promise<void>;
+  supprimerLigne(onglet: string, ligne: number): Promise<void>;
+}
+
+const quote = (onglet: string) => `'${onglet.replace(/'/g, "''")}'`;
+
+/** Empêche une cellule texte d'être interprétée comme une formule. */
+export function proteger(v: Cellule): string | number | boolean {
+  if (v === null || v === undefined) return "";
+  if (typeof v === "string" && /^[=+\-@]/.test(v) && !/^[-+]?\d+([.,]\d+)?$/.test(v))
+    return `'${v}`;
+  return v;
+}
+
+export function creerClientGoogle(
+  sheets: Pick<sheets_v4.Sheets, "spreadsheets">,
+  spreadsheetId: string,
+): SheetsClient {
+  const idOnglet = async (onglet: string): Promise<number> => {
+    const meta = await sheets.spreadsheets.get({
+      spreadsheetId,
+      fields: "sheets.properties(sheetId,title)",
+    });
+    const f = meta.data.sheets?.find((s) => s.properties?.title === onglet);
+    if (f?.properties?.sheetId === undefined || f.properties.sheetId === null) {
+      throw new Error(`Onglet « ${onglet} » introuvable dans le Google Sheet`);
+    }
+    return f.properties.sheetId;
+  };
+
+  return {
+    async lireOnglets(onglets) {
+      const r = await sheets.spreadsheets.values.batchGet({
+        spreadsheetId,
+        ranges: onglets.map((o) => `${quote(o)}!A:ZZ`),
+        valueRenderOption: "UNFORMATTED_VALUE",
+        dateTimeRenderOption: "SERIAL_NUMBER",
+      });
+      const vr = r.data.valueRanges ?? [];
+      return onglets.map((_, i) => (vr[i]?.values ?? []) as Cellule[][]);
+    },
+    async ajouterLignes(onglet, lignes) {
+      if (lignes.length === 0) return;
+      await sheets.spreadsheets.values.append({
+        spreadsheetId,
+        range: `${quote(onglet)}!A:A`,
+        valueInputOption: "USER_ENTERED",
+        insertDataOption: "INSERT_ROWS",
+        requestBody: { values: lignes.map((l) => l.map(proteger)) },
+      });
+    },
+    async ecrireLignes(maj) {
+      if (maj.length === 0) return;
+      await sheets.spreadsheets.values.batchUpdate({
+        spreadsheetId,
+        requestBody: {
+          valueInputOption: "USER_ENTERED",
+          data: maj.map((m) => ({
+            range: `${quote(m.onglet)}!A${m.ligne}`,
+            values: [m.valeurs.map(proteger)],
+          })),
+        },
+      });
+    },
+    async supprimerLigne(onglet, ligne) {
+      const sheetId = await idOnglet(onglet);
+      await sheets.spreadsheets.batchUpdate({
+        spreadsheetId,
+        requestBody: {
+          requests: [
+            {
+              deleteDimension: {
+                range: { sheetId, dimension: "ROWS", startIndex: ligne - 1, endIndex: ligne },
+              },
+            },
+          ],
+        },
+      });
+    },
+  };
+}
+
+/** Client réel à partir des variables d'environnement (compte de service). */
+export function creerClientDepuisEnv(env: NodeJS.ProcessEnv = process.env): SheetsClient {
+  const email = env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+  const cle = env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  const id = env.SHEET_ID;
+  if (!email || !cle || !id) {
+    throw new Error(
+      "Variables manquantes : GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY et SHEET_ID sont requises avec DATA_SOURCE=sheets.",
+    );
+  }
+  const auth = new google.auth.JWT({
+    email,
+    key: cle,
+    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+  });
+  return creerClientGoogle(google.sheets({ version: "v4", auth }), id);
+}

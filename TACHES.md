@@ -16,7 +16,7 @@ Cocher `[x]` quand la tâche est finie et que `npm run check` passe. Une tâche 
 - [x] T07 Accès par code (section 9) : écran clavier 5 chiffres, lien « Accès administrateur », cookie signé, rôles, anti-force brute, middleware de protection, script `npm run set-codes`. En développement, codes par défaut `12345` (famille) et `admin-olive-2026` (admin), notés dans `.env.example`. Tests unitaires + test Playwright (mauvais code, bon code, lecteur ne voit aucun bouton d'écriture, écriture refusée côté serveur pour un lecteur).
 
 ## Phase 3 — Écrans de lecture
-- [ ] T08 Mise en page : barre d'onglets mobile, menu latéral bureau, en-tête avec nom de l'exploitation et sélecteur d'année.
+- [x] T08 Mise en page : barre d'onglets mobile, menu latéral bureau, en-tête avec nom de l'exploitation et sélecteur d'année.
 - [ ] T09 Écran Accueil (section 4.1) avec données réelles du mock.
 - [ ] T10 Écran Dépenses (4.2).
 - [ ] T11 Écran Ventes (4.3).

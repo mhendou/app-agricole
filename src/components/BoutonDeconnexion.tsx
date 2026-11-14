@@ -1,20 +1,23 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Bouton } from "@/components/ui";
+import { LogOut } from "lucide-react";
 
 export function BoutonDeconnexion() {
   const router = useRouter();
   return (
-    <Bouton
-      variante="secondaire"
+    <button
+      type="button"
+      aria-label="Se déconnecter"
+      title="Se déconnecter"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full text-pierre hover:bg-sauge/25"
       onClick={async () => {
         await fetch("/api/auth/deconnexion", { method: "POST" });
         router.replace("/code");
         router.refresh();
       }}
     >
-      Se déconnecter
-    </Bouton>
+      <LogOut size={20} strokeWidth={1.5} />
+    </button>
   );
 }

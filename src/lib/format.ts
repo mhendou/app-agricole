@@ -75,3 +75,19 @@ export function jourSemaine(iso: string): string {
   const jour = JOURS[new Date(Date.UTC(a, m - 1, j)).getUTCDay()];
   return `${jour} ${j}${NBSP}${MOIS_COURTS[m - 1]}`;
 }
+
+/** « 14 nov. 2026, 04:12 » (heure de Casablanca) à partir d'un horodatage ISO. */
+export function formatHorodatage(iso: string): string {
+  const d = new Date(iso);
+  const parties = new Intl.DateTimeFormat("fr-FR", {
+    timeZone: "Africa/Casablanca",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(d);
+  const p = (t: string) => parties.find((x) => x.type === t)?.value ?? "";
+  return `${Number(p("day"))}${NBSP}${MOIS_COURTS[Number(p("month")) - 1]}${NBSP}${p("year")}, ${p("hour")}:${p("minute")}`;
+}

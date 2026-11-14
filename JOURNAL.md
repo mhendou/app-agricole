@@ -17,3 +17,4 @@
 - 2026-11-14 T16 : prévision 7 j, pluie par mois, Meteoblue, attribution Open-Meteo, bonus pluie/récolte, lien depuis l'Accueil.
 - 2026-11-14 T17 : route /api/recap (next/og, Fraunces/Inter), bouton de partage natif avec repli téléchargement, test e2e PNG, capture docs/captures/recap-2026.png.
 - 2026-11-14 T18 : page admin /admin/controle (lignes ignorées, à vérifier, montants incohérents, doublons) + bouton Ouvrir le Google Sheet, tests.
+- 2026-11-14 T19 : manifest, icônes rameau (192/512/maskable/Apple), sw.js réseau-d'abord avec repli hors ligne, bandeau hors connexion, mention dernière mise à jour, tests e2e.

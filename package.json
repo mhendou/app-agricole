@@ -15,7 +15,8 @@
     "init-sheet": "tsx --env-file-if-exists=.env.local scripts/init-sheet.ts",
     "seed-sheet": "tsx --env-file-if-exists=.env.local scripts/seed-sheet.ts",
     "set-codes": "tsx scripts/set-codes.ts",
-    "rattrapage-pluie": "tsx --env-file-if-exists=.env.local scripts/rattrapage-pluie.ts"
+    "rattrapage-pluie": "tsx --env-file-if-exists=.env.local scripts/rattrapage-pluie.ts",
+    "icones": "tsx scripts/generer-icones.ts"
   },
   "dependencies": {
     "@fontsource/fraunces": "^5.3.0",
@@ -38,6 +39,7 @@
     "eslint-config-next": "^16.4.6",
     "postcss": "^8.5.33",
     "prettier": "^3.10.1",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.5",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",

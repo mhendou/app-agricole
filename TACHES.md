@@ -13,7 +13,7 @@ Cocher `[x]` quand la tâche est finie et que `npm run check` passe. Une tâche 
 - [x] T06 `/lib/stats` : tous les indicateurs de la section 6, avec tests sur les repères de la section 5 (1 844 kg de moyenne, 10 680 DH, 8 631 DH, 18,1 %, 2025 deuxième après 2017, 2015 = donnée perdue).
 
 ## Phase 2 — Accès
-- [ ] T07 Accès par code (section 9) : écran clavier 5 chiffres, lien « Accès administrateur », cookie signé, rôles, anti-force brute, middleware de protection, script `npm run set-codes`. En développement, codes par défaut `12345` (famille) et `admin-olive-2026` (admin), notés dans `.env.example`. Tests unitaires + test Playwright (mauvais code, bon code, lecteur ne voit aucun bouton d'écriture, écriture refusée côté serveur pour un lecteur).
+- [x] T07 Accès par code (section 9) : écran clavier 5 chiffres, lien « Accès administrateur », cookie signé, rôles, anti-force brute, middleware de protection, script `npm run set-codes`. En développement, codes par défaut `12345` (famille) et `admin-olive-2026` (admin), notés dans `.env.example`. Tests unitaires + test Playwright (mauvais code, bon code, lecteur ne voit aucun bouton d'écriture, écriture refusée côté serveur pour un lecteur).
 
 ## Phase 3 — Écrans de lecture
 - [ ] T08 Mise en page : barre d'onglets mobile, menu latéral bureau, en-tête avec nom de l'exploitation et sélecteur d'année.

@@ -13,7 +13,8 @@
     "format": "prettier --write .",
     "check": "npm run lint && npm run typecheck && npm run test && npm run build",
     "init-sheet": "tsx --env-file-if-exists=.env.local scripts/init-sheet.ts",
-    "seed-sheet": "tsx --env-file-if-exists=.env.local scripts/seed-sheet.ts"
+    "seed-sheet": "tsx --env-file-if-exists=.env.local scripts/seed-sheet.ts",
+    "set-codes": "tsx scripts/set-codes.ts"
   },
   "dependencies": {
     "googleapis": "^190.0.0",

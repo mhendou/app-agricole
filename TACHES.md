@@ -7,7 +7,7 @@ Cocher `[x]` quand la tâche est finie et que `npm run check` passe. Une tâche 
 - [x] T02 Jetons de design (section 3 de CLAUDE.md) dans Tailwind et CSS, polices Fraunces + Inter via next/font, composants de base : Carte, CarteChiffre, Badge, Bouton, BarreProportion, SelecteurAnnee, EtatVide, Chargement, Erreur. Page `/style` qui les montre tous.
 
 ## Phase 1 — Données
-- [ ] T03 Types et schémas zod pour Depenses, Ventes, Recoltes, Pluie, Parametres. Parsing tolérant + tests (virgule décimale, dates numéro de série et texte, lignes vides, colonnes dans le désordre).
+- [x] T03 Types et schémas zod pour Depenses, Ventes, Recoltes, Pluie, Parametres. Parsing tolérant + tests (virgule décimale, dates numéro de série et texte, lignes vides, colonnes dans le désordre).
 - [ ] T04 Interface `DataSource` + implémentation `mock` (JSON dans `.data-local/`, initialisée depuis `/data/*.csv`) avec lecture, ajout, modification, suppression par `id`. Tests.
 - [ ] T05 Implémentation `sheets` (googleapis, batchGet UNFORMATTED_VALUE, cache 60 s, colonnes retrouvées par nom, écriture par id). Tests avec googleapis simulé (aucun appel réel). Scripts `scripts/init-sheet.ts` (crée onglets, en-têtes, formats, listes déroulantes, idempotent) et `scripts/seed-sheet.ts` (charge `/data/*.csv`), documentés dans `docs/sheet.md`, **non exécutés**.
 - [ ] T06 `/lib/stats` : tous les indicateurs de la section 6, avec tests sur les repères de la section 5 (1 844 kg de moyenne, 10 680 DH, 8 631 DH, 18,1 %, 2025 deuxième après 2017, 2015 = donnée perdue).

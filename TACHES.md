@@ -28,7 +28,7 @@ Cocher `[x]` quand la tâche est finie et que `npm run check` passe. Une tâche 
 
 ## Phase 5 — Météo
 - [x] T15 `/lib/meteo` (Open-Meteo), route `/api/cron/pluie` protégée par `CRON_SECRET`, `vercel.json` avec le cron quotidien, script `scripts/rattrapage-pluie.ts` depuis 2013. Exécuter le rattrapage **en mode mock** pour remplir `.data-local/` (appel réel à Open-Meteo autorisé). Tests avec réseau simulé.
-- [ ] T16 Écran Météo (section 4.5) + carte météo de l'Accueil + graphique bonus pluie vs production.
+- [x] T16 Écran Météo (section 4.5) + carte météo de l'Accueil + graphique bonus pluie vs production.
 
 ## Phase 6 — Finitions
 - [ ] T17 Récap partageable (section 4.6) : image PNG générée côté serveur (next/og), partage natif avec repli téléchargement.

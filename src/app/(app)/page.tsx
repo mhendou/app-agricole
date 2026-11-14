@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Leaf, TrendingDown, TrendingUp } from "lucide-react";
 import { BarreProportion, Carte, CarteChiffre } from "@/components/ui";
 import { Goutte, Paysage } from "@/components/Illustrations";
@@ -125,6 +126,12 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
             {!aDePluie ? (
               <p className="mt-2 text-pierre">Pas encore de relevé pour cette année.</p>
             ) : null}
+            <Link
+              href={`/meteo?annee=${annee}`}
+              className="mt-3 inline-flex min-h-11 items-center text-base font-medium text-olive-fonce underline underline-offset-4"
+            >
+              Voir la météo et la prévision
+            </Link>
           </Carte>
         </div>
       </div>

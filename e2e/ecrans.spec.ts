@@ -43,4 +43,15 @@ test.describe("écrans de lecture", () => {
     await page.goto("/recoltes?annee=2015");
     await expect(page.getByText(/Donnée perdue : cette année/)).toBeVisible();
   });
+
+  test("Météo : lien Meteoblue et attribution Open-Meteo", async ({ page }) => {
+    await page.goto("/meteo?annee=2026");
+    await expect(page.getByRole("heading", { name: "Météo 2026" })).toBeVisible();
+    await expect(page.getByRole("link", { name: /Ouvrir Meteoblue/ })).toHaveAttribute(
+      "href",
+      /meteoblue/,
+    );
+    await expect(page.getByText(/Open-Meteo.com/).first()).toBeVisible();
+    await expect(page.getByText("Les 7 prochains jours")).toBeVisible();
+  });
 });

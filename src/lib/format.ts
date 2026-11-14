@@ -66,3 +66,12 @@ export function formatEcart(n: number, unite: "pct" | "kg"): string {
   const abs = Math.abs(n);
   return unite === "pct" ? `${signe}${formatNombre(abs, 0)}${NBSP}%` : `${signe}${formatKg(abs)}`;
 }
+
+const JOURS = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
+
+/** « 2026-11-16 » → « lundi 16 nov. ». */
+export function jourSemaine(iso: string): string {
+  const [a, m, j] = iso.split("-").map(Number);
+  const jour = JOURS[new Date(Date.UTC(a, m - 1, j)).getUTCDay()];
+  return `${jour} ${j}${NBSP}${MOIS_COURTS[m - 1]}`;
+}

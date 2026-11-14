@@ -1,1 +1,94 @@
 @import "tailwindcss";
+
+@theme {
+  --color-sable: #f6f1e7;
+  --color-creme: #fffdf8;
+  --color-pierre: #6f624f;
+  --color-encre: #2a2722;
+  --color-olive: #5e6b2e;
+  --color-olive-fonce: #3b4520;
+  --color-sauge: #a3ad86;
+  --color-argile: #b4532a;
+  --color-ocre: #d9a441;
+  --color-ciel: #5a8ba8;
+  --font-titre: var(--font-fraunces), Georgia, serif;
+  --font-texte: var(--font-inter), system-ui, sans-serif;
+  --radius-carte: 1.125rem;
+  --shadow-carte: 0 1px 2px rgb(42 39 34 / 0.05), 0 4px 14px rgb(42 39 34 / 0.05);
+}
+
+html {
+  background: var(--color-sable);
+}
+
+body {
+  background: var(--color-sable);
+  color: var(--color-encre);
+  font-family: var(--font-texte);
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-ocre);
+  outline-offset: 2px;
+}
+
+@keyframes apparition {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes croissance {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes croissance-verticale {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.anim-apparition {
+  animation: apparition 0.4s ease-out both;
+}
+
+.anim-croissance {
+  transform-origin: left;
+  animation: croissance 0.7s ease-out both;
+}
+
+.hachure {
+  background-image: repeating-linear-gradient(
+    45deg,
+    #c9c2b4 0,
+    #c9c2b4 4px,
+    #e8e2d4 4px,
+    #e8e2d4 8px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-apparition,
+  .anim-croissance {
+    animation: none;
+  }
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

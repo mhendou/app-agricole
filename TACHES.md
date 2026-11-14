@@ -32,7 +32,7 @@ Cocher `[x]` quand la tâche est finie et que `npm run check` passe. Une tâche 
 
 ## Phase 6 — Finitions
 - [x] T17 Récap partageable (section 4.6) : image PNG générée côté serveur (next/og), partage natif avec repli téléchargement.
-- [ ] T18 Page admin « Contrôle des données » + bouton « Ouvrir le Google Sheet ».
+- [x] T18 Page admin « Contrôle des données » + bouton « Ouvrir le Google Sheet ».
 - [ ] T19 PWA : manifest, icônes rameau d'olivier (SVG puis PNG 192/512 et maskable), service worker avec cache des dernières données, mention « dernière mise à jour ».
 - [ ] T20 Revue qualité : relire chaque écran en 360 px et 1280 px avec des captures Playwright enregistrées dans `docs/captures/`, corriger les défauts visuels, vérifier contrastes et tailles tactiles, accessibilité (labels, focus visible).
 - [ ] T21 Documentation : `README.md` (lancer en local), `docs/mise-en-ligne.md` (étapes pas à pas : Google Cloud, compte de service, partage du Sheet, `init-sheet`, `seed-sheet`, variables Vercel, déploiement, cron), `docs/guide-famille.md` (installer l'appli sur Android et iPhone et entrer le code, en phrases très simples).

@@ -1,16 +1,22 @@
 import Link from "next/link";
-import { Leaf, TrendingDown, TrendingUp } from "lucide-react";
+import { Leaf, ShieldCheck, TrendingDown, TrendingUp } from "lucide-react";
 import { BarreProportion, Carte, CarteChiffre } from "@/components/ui";
 import { BoutonPartage } from "@/components/BoutonPartage";
 import { Goutte, Paysage } from "@/components/Illustrations";
 import { HistogrammeMensuel } from "@/components/HistogrammeMensuel";
 import { lireAnnee, type ParamsPage } from "@/lib/annee";
+import { getRole } from "@/lib/auth/server";
 import { bornesAnnees, chargerDonnees } from "@/lib/donnees";
 import { formatDH, formatEcart, formatKg, formatLitres, formatMm, formatPct } from "@/lib/format";
 import { pluieAnnee, statsAnnee, statsRecoltes } from "@/lib/stats";
 
 export default async function Page({ searchParams }: { searchParams: ParamsPage }) {
-  const [d, bornes, params] = await Promise.all([chargerDonnees(), bornesAnnees(), searchParams]);
+  const [d, bornes, params, role] = await Promise.all([
+    chargerDonnees(),
+    bornesAnnees(),
+    searchParams,
+    getRole(),
+  ]);
   const annee = lireAnnee(params.annee, bornes.courante, bornes.min, bornes.max);
   const s = statsAnnee(d, annee);
   const recoltes = statsRecoltes(
@@ -144,6 +150,16 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
         </p>
         <BoutonPartage annee={annee} />
       </Carte>
+
+      {role === "admin" ? (
+        <Link
+          href="/admin/controle"
+          className="flex min-h-14 items-center gap-3 rounded-carte bg-creme p-4 font-medium shadow-carte"
+        >
+          <ShieldCheck size={22} strokeWidth={1.5} className="text-olive" aria-hidden="true" />
+          Contrôle des données (administrateur)
+        </Link>
+      ) : null}
     </div>
   );
 }

@@ -90,3 +90,13 @@ test.describe("saisie administrateur", () => {
     await expect(page.getByText(/Donnée perdue : cette année/)).toBeVisible();
   });
 });
+
+test("contrôle des données : réservé à l'admin, lien vers le Sheet", async ({ page }) => {
+  await connecter(page, "famille");
+  await page.goto("/admin/controle");
+  await expect(page).toHaveURL(/\/$/);
+  await connecter(page, "admin");
+  await page.goto("/admin/controle");
+  await expect(page.getByRole("heading", { name: "Contrôle des données" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "À vérifier" })).toBeVisible();
+});

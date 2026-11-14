@@ -23,7 +23,7 @@ Cocher `[x]` quand la tâche est finie et que `npm run check` passe. Une tâche 
 - [x] T12 Écran Récoltes (4.4), années perdues hachurées.
 
 ## Phase 4 — Saisie admin
-- [ ] T13 `/lib/fx` (section 8) avec tests (réseau simulé dans les tests).
+- [x] T13 `/lib/fx` (section 8) avec tests (réseau simulé dans les tests).
 - [ ] T14 Formulaires admin Dépense, Vente (bascule DH/€, conversion en direct), Récolte : ajout, modification, suppression avec confirmation, messages de succès, validation. Server actions protégées par le rôle admin. Tests Playwright du parcours d'ajout.
 
 ## Phase 5 — Météo

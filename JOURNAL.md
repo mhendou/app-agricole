@@ -11,3 +11,4 @@
 - 2026-11-14 T10 : liste groupée par mois, icônes de catégorie, répartition en barres, bouton + admin.
 - 2026-11-14 T11 : badges de statut, à encaisser en évidence, litres, prix moyen, Maroc/hors Maroc.
 - 2026-11-14 T12 : histogramme 2013→, années perdues hachurées, record, moyenne, rendement, kg par arbre + tests e2e des 4 écrans.
+- 2026-11-14 T13 : lib/fx (Frankfurter, open.er-api.com, secours, cache 12 h), route /api/taux, tests réseau simulé.

@@ -12,3 +12,4 @@
 - Anti-force brute en mémoire du serveur (clé IP + empreinte appareil) : fiable en local, « au mieux » sur Vercel (instances multiples).
 - Écritures via routes API (`/api/depenses`, etc.) plutôt que server actions : testables directement (statuts 401/403) et vérifiées côté serveur.
 - Playwright utilise Microsoft Edge (`channel: msedge`) pour ne rien télécharger ; `npm run test:e2e` (hors `npm run check`).
+- Frankfurter (taux BCE) ne publie pas le dirham (réponse 404 vérifiée le 14/11/2026) : en pratique le taux vient du repli open.er-api.com (attribution « Exchange rates by ExchangeRate-API » à afficher), puis du taux de secours. Le code garde l'ordre demandé (Frankfurter d'abord).

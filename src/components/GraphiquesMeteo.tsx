@@ -96,7 +96,13 @@ export function GraphiquePluieProduction({ donnees }: { donnees: PointPluieProdu
         >
           <ComposedChart data={lignes} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
             <CartesianGrid vertical={false} stroke="#e8e2d4" />
-            <XAxis dataKey="etiquette" interval={0} tickLine={false} axisLine={false} tick={tick} />
+            <XAxis
+              dataKey="etiquette"
+              interval={large ? 0 : 1}
+              tickLine={false}
+              axisLine={false}
+              tick={tick}
+            />
             <YAxis
               yAxisId="kg"
               width={44}

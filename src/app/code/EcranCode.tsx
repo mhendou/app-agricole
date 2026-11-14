@@ -74,7 +74,7 @@ export function EcranCode() {
               />
             ))}
           </div>
-          <p role="alert" className="mt-4 min-h-12 text-base font-medium text-argile">
+          <p role="alert" className="mt-4 min-h-12 text-base font-medium text-argile-texte">
             {erreur}
           </p>
           <div className="grid grid-cols-3 gap-3">
@@ -133,7 +133,7 @@ export function EcranCode() {
             onChange={(e) => setMdp(e.target.value)}
             className="min-h-12 rounded-xl border border-sauge bg-creme px-4 text-center text-lg"
           />
-          <p role="alert" className="min-h-6 text-base font-medium text-argile">
+          <p role="alert" className="min-h-6 text-base font-medium text-argile-texte">
             {erreur}
           </p>
           <Bouton type="submit" disabled={envoi || mdp.length === 0}>

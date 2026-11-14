@@ -9,6 +9,9 @@
   --color-olive-fonce: #3b4520;
   --color-sauge: #a3ad86;
   --color-argile: #b4532a;
+  /* argile assombri pour le texte (contraste AA sur sable) */
+  --color-argile-texte: #9a4423;
+  --color-sauge-clair: #d6dcc0;
   --color-ocre: #d9a441;
   --color-ciel: #5a8ba8;
   --font-titre: var(--font-fraunces), Georgia, serif;

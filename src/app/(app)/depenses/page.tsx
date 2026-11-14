@@ -97,7 +97,7 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
               <h2 id={`mois-${g.mois}`} className="font-titre text-xl font-semibold capitalize">
                 {nomMois(g.mois)} {annee}
               </h2>
-              <p className="font-medium text-argile">{formatDH(g.total)}</p>
+              <p className="font-medium text-argile-texte">{formatDH(g.total)}</p>
             </div>
             <Carte className="!p-2">
               <ul className="divide-y divide-sauge/30">
@@ -114,7 +114,7 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
                         </p>
                         {l.note ? <p className="text-base text-pierre">{l.note}</p> : null}
                       </div>
-                      <p className="whitespace-nowrap font-titre text-lg font-semibold text-argile">
+                      <p className="whitespace-nowrap font-titre text-lg font-semibold text-argile-texte">
                         {formatDH(l.montant_dh)}
                       </p>
                     </>

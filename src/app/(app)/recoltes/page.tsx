@@ -101,23 +101,23 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
         ) : (
           <dl className="mt-3 grid grid-cols-2 gap-4 lg:grid-cols-4">
             <div>
-              <dt className="text-base text-pierre">Olives</dt>
+              <dt className="text-base text-olive-fonce">Olives</dt>
               <dd className="font-titre text-2xl font-semibold">{formatKg(choisie.kg ?? 0)}</dd>
             </div>
             <div>
-              <dt className="text-base text-pierre">Huile</dt>
+              <dt className="text-base text-olive-fonce">Huile</dt>
               <dd className="font-titre text-2xl font-semibold">
                 {choisie.litres !== null ? formatLitres(choisie.litres) : "—"}
               </dd>
             </div>
             <div>
-              <dt className="text-base text-pierre">Rendement</dt>
+              <dt className="text-base text-olive-fonce">Rendement</dt>
               <dd className="font-titre text-2xl font-semibold">
                 {choisie.rendementPct !== null ? formatPct(choisie.rendementPct) : "—"}
               </dd>
             </div>
             <div>
-              <dt className="text-base text-pierre">Par arbre</dt>
+              <dt className="text-base text-olive-fonce">Par arbre</dt>
               <dd className="font-titre text-2xl font-semibold">
                 {choisie.kgParArbre !== null ? `${formatNombre(choisie.kgParArbre)} kg` : "—"}
               </dd>
@@ -138,7 +138,7 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
             ) : null}
           </p>
         ) : null}
-        {choisie?.note ? <p className="mt-2 text-base text-pierre">{choisie.note}</p> : null}
+        {choisie?.note ? <p className="mt-2 text-base text-olive-fonce">{choisie.note}</p> : null}
       </Carte>
 
       <Carte className="!p-2">

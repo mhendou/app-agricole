@@ -68,7 +68,7 @@ export function useEnvoi(retour: string) {
 
 export function BlocErreur({ message }: { message: string }) {
   return (
-    <p role="alert" className="min-h-6 text-base font-medium text-argile">
+    <p role="alert" className="min-h-6 text-base font-medium text-argile-texte">
       {message}
     </p>
   );
@@ -87,7 +87,7 @@ export function SuppressionConfirmee({
   const [ouvert, setOuvert] = useState(false);
   if (!ouvert) {
     return (
-      <Bouton variante="discret" className="text-argile" onClick={() => setOuvert(true)}>
+      <Bouton variante="discret" className="text-argile-texte" onClick={() => setOuvert(true)}>
         Supprimer
       </Bouton>
     );

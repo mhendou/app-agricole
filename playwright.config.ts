@@ -15,6 +15,10 @@ export default defineConfig({
     url: "http://localhost:3100/code",
     reuseExistingServer: false,
     timeout: 120000,
-    env: { DATA_SOURCE: "mock", DATA_DIR: ".data-test", ALLOW_DEV_CODES: "1" },
+    env: {
+      DATA_SOURCE: "mock",
+      DATA_DIR: process.env.PW_DATA_DIR ?? ".data-test",
+      ALLOW_DEV_CODES: "1",
+    },
   },
 });

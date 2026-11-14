@@ -61,7 +61,7 @@ export function HistogrammeRecoltes({
             <CartesianGrid vertical={false} stroke="#e8e2d4" />
             <XAxis
               dataKey="etiquette"
-              interval={0}
+              interval={large ? 0 : 1}
               tickLine={false}
               axisLine={false}
               tick={{ fill: "#6f624f", fontSize: 14 }}

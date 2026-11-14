@@ -101,7 +101,7 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
                     aria-hidden="true"
                   />
                 )}
-                <span className="w-28 capitalize">{jourSemaine(j.date)}</span>
+                <span className="w-28 first-letter:uppercase">{jourSemaine(j.date)}</span>
                 <span className="flex-1 text-pierre">
                   {j.pluie_mm >= 0.1 ? formatMm(j.pluie_mm) : "Sec"}
                   {j.probabilite !== null && j.pluie_mm >= 0.1 ? ` · ${j.probabilite} %` : ""}

@@ -42,13 +42,15 @@ export function CarteChiffre({
 }) {
   const classeCouleur = fonce
     ? "text-creme"
-    : { encre: "text-encre", olive: "text-olive", argile: "text-argile", ocre: "text-ocre" }[
+    : { encre: "text-encre", olive: "text-olive", argile: "text-argile-texte", ocre: "text-ocre" }[
         couleur
       ];
   return (
     <Carte ton={fonce ? "olive" : "creme"}>
       <div className="flex items-center justify-between gap-2">
-        <h3 className={`text-base font-medium ${fonce ? "text-sauge" : "text-pierre"}`}>{titre}</h3>
+        <h3 className={`text-base font-medium ${fonce ? "text-sauge-clair" : "text-pierre"}`}>
+          {titre}
+        </h3>
         {icone}
       </div>
       <p className={`font-titre mt-2 text-4xl font-semibold ${classeCouleur}`}>{valeur}</p>
@@ -63,7 +65,7 @@ const tons = {
   olive: "bg-olive/15 text-olive-fonce",
   ocre: "bg-ocre/25 text-[#6b4a00]",
   pierre: "bg-pierre/15 text-pierre",
-  argile: "bg-argile/15 text-argile",
+  argile: "bg-argile/15 text-argile-texte",
   ciel: "bg-ciel/15 text-[#2f5d79]",
 } as const;
 
@@ -218,7 +220,7 @@ export function Erreur({
 }) {
   return (
     <div role="alert" className="rounded-carte border border-argile/40 bg-argile/10 p-5 text-encre">
-      <p className="font-titre text-lg font-semibold text-argile">{titre}</p>
+      <p className="font-titre text-lg font-semibold text-argile-texte">{titre}</p>
       {children ? <div className="mt-1">{children}</div> : null}
     </div>
   );

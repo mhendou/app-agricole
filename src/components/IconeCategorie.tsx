@@ -28,7 +28,7 @@ export function IconeCategorie({ categorie, taille = 22 }: { categorie: string; 
   return (
     <span
       aria-hidden="true"
-      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-argile/10 text-argile"
+      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-argile/10 text-argile-texte"
     >
       <Icone size={taille} strokeWidth={1.5} />
     </span>

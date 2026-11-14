@@ -49,7 +49,9 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
           titre="Dépenses"
           valeur={formatDH(s.depenses)}
           couleur="argile"
-          icone={<TrendingDown size={22} strokeWidth={1.5} className="text-argile" aria-hidden />}
+          icone={
+            <TrendingDown size={22} strokeWidth={1.5} className="text-argile-texte" aria-hidden />
+          }
         />
         <div>
           <CarteChiffre titre="Solde" valeur={formatDH(s.solde)} fonce />
@@ -65,7 +67,7 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
           <>
             <p className="text-base">
               Les dépenses représentent{" "}
-              <strong className="font-titre text-xl text-argile">
+              <strong className="font-titre text-xl text-argile-texte">
                 {formatPct(s.depensesPctVentes, 0)}
               </strong>{" "}
               des ventes encaissées.
@@ -110,7 +112,7 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
                     : ""}
                 </p>
                 {derniere.ecartKg !== null ? (
-                  <p className={derniere.ecartKg >= 0 ? "text-olive" : "text-argile"}>
+                  <p className={derniere.ecartKg >= 0 ? "text-olive" : "text-argile-texte"}>
                     {formatEcart(derniere.ecartKg, "kg")} vs {derniere.annee - 1}
                   </p>
                 ) : null}

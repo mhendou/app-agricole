@@ -10,3 +10,4 @@
 - 2026-11-14 T09 : cartes Ventes/Dépenses/Solde, barre dépenses/ventes, histogramme mensuel Recharts, dernière récolte, pluie, paysage SVG + test e2e.
 - 2026-11-14 T10 : liste groupée par mois, icônes de catégorie, répartition en barres, bouton + admin.
 - 2026-11-14 T11 : badges de statut, à encaisser en évidence, litres, prix moyen, Maroc/hors Maroc.
+- 2026-11-14 T12 : histogramme 2013→, années perdues hachurées, record, moyenne, rendement, kg par arbre + tests e2e des 4 écrans.

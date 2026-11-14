@@ -20,7 +20,7 @@ Cocher `[x]` quand la tâche est finie et que `npm run check` passe. Une tâche 
 - [x] T09 Écran Accueil (section 4.1) avec données réelles du mock.
 - [x] T10 Écran Dépenses (4.2).
 - [x] T11 Écran Ventes (4.3).
-- [ ] T12 Écran Récoltes (4.4), années perdues hachurées.
+- [x] T12 Écran Récoltes (4.4), années perdues hachurées.
 
 ## Phase 4 — Saisie admin
 - [ ] T13 `/lib/fx` (section 8) avec tests (réseau simulé dans les tests).

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Leaf, TrendingDown, TrendingUp } from "lucide-react";
 import { BarreProportion, Carte, CarteChiffre } from "@/components/ui";
+import { BoutonPartage } from "@/components/BoutonPartage";
 import { Goutte, Paysage } from "@/components/Illustrations";
 import { HistogrammeMensuel } from "@/components/HistogrammeMensuel";
 import { lireAnnee, type ParamsPage } from "@/lib/annee";
@@ -135,6 +136,14 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
           </Carte>
         </div>
       </div>
+
+      <Carte ton="sauge">
+        <h2 className="font-titre mb-1 text-xl font-semibold">Partager le bilan</h2>
+        <p className="mb-3 text-base">
+          Une image du bilan {annee} à envoyer à la famille, par WhatsApp par exemple.
+        </p>
+        <BoutonPartage annee={annee} />
+      </Carte>
     </div>
   );
 }

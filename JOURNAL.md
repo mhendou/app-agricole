@@ -15,3 +15,4 @@
 - 2026-11-14 T14 : routes API gardées + formulaires ajout/modif/suppression confirmée, conversion € en direct, tests e2e du parcours.
 - 2026-11-14 T15 : lib/meteo, route /api/cron/pluie (CRON_SECRET), vercel.json, script rattrapage-pluie exécuté en mock (5 065 jours 2013→hier), tests réseau simulé.
 - 2026-11-14 T16 : prévision 7 j, pluie par mois, Meteoblue, attribution Open-Meteo, bonus pluie/récolte, lien depuis l'Accueil.
+- 2026-11-14 T17 : route /api/recap (next/og, Fraunces/Inter), bouton de partage natif avec repli téléchargement, test e2e PNG, capture docs/captures/recap-2026.png.

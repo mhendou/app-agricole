@@ -55,3 +55,21 @@ test.describe("écrans de lecture", () => {
     await expect(page.getByText("Les 7 prochains jours")).toBeVisible();
   });
 });
+
+test.describe("récap partageable", () => {
+  test("l'image PNG est générée pour un lecteur, refusée sans session", async ({
+    page,
+    request,
+  }) => {
+    expect((await request.get("/api/recap?annee=2026")).status()).toBe(401);
+    await connecter(page);
+    const r = await page.request.get("/api/recap?annee=2026");
+    expect(r.status()).toBe(200);
+    expect(r.headers()["content-type"]).toContain("image/png");
+    const corps = await r.body();
+    expect(corps.subarray(1, 4).toString()).toBe("PNG");
+    expect(corps.length).toBeGreaterThan(20000);
+    await page.goto("/?annee=2026");
+    await expect(page.getByRole("button", { name: "Partager le récap de l'année" })).toBeVisible();
+  });
+});

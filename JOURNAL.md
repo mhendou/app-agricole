@@ -13,3 +13,4 @@
 - 2026-11-14 T12 : histogramme 2013→, années perdues hachurées, record, moyenne, rendement, kg par arbre + tests e2e des 4 écrans.
 - 2026-11-14 T13 : lib/fx (Frankfurter, open.er-api.com, secours, cache 12 h), route /api/taux, tests réseau simulé.
 - 2026-11-14 T14 : routes API gardées + formulaires ajout/modif/suppression confirmée, conversion € en direct, tests e2e du parcours.
+- 2026-11-14 T15 : lib/meteo, route /api/cron/pluie (CRON_SECRET), vercel.json, script rattrapage-pluie exécuté en mock (5 065 jours 2013→hier), tests réseau simulé.

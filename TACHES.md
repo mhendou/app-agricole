@@ -27,7 +27,7 @@ Cocher `[x]` quand la tâche est finie et que `npm run check` passe. Une tâche 
 - [x] T14 Formulaires admin Dépense, Vente (bascule DH/€, conversion en direct), Récolte : ajout, modification, suppression avec confirmation, messages de succès, validation. Server actions protégées par le rôle admin. Tests Playwright du parcours d'ajout.
 
 ## Phase 5 — Météo
-- [ ] T15 `/lib/meteo` (Open-Meteo), route `/api/cron/pluie` protégée par `CRON_SECRET`, `vercel.json` avec le cron quotidien, script `scripts/rattrapage-pluie.ts` depuis 2013. Exécuter le rattrapage **en mode mock** pour remplir `.data-local/` (appel réel à Open-Meteo autorisé). Tests avec réseau simulé.
+- [x] T15 `/lib/meteo` (Open-Meteo), route `/api/cron/pluie` protégée par `CRON_SECRET`, `vercel.json` avec le cron quotidien, script `scripts/rattrapage-pluie.ts` depuis 2013. Exécuter le rattrapage **en mode mock** pour remplir `.data-local/` (appel réel à Open-Meteo autorisé). Tests avec réseau simulé.
 - [ ] T16 Écran Météo (section 4.5) + carte météo de l'Accueil + graphique bonus pluie vs production.
 
 ## Phase 6 — Finitions

@@ -14,7 +14,8 @@
     "check": "npm run lint && npm run typecheck && npm run test && npm run build",
     "init-sheet": "tsx --env-file-if-exists=.env.local scripts/init-sheet.ts",
     "seed-sheet": "tsx --env-file-if-exists=.env.local scripts/seed-sheet.ts",
-    "set-codes": "tsx scripts/set-codes.ts"
+    "set-codes": "tsx scripts/set-codes.ts",
+    "rattrapage-pluie": "tsx --env-file-if-exists=.env.local scripts/rattrapage-pluie.ts"
   },
   "dependencies": {
     "googleapis": "^190.0.0",

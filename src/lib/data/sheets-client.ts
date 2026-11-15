@@ -99,10 +99,12 @@ export function normaliserClePrivee(brute: string | undefined): string | undefin
   if (!brute) return undefined;
   const texte = brute.trim().replace(/^["']+|["']+$/g, "").replace(/\\r/g, "").replace(/\\n/g, "\n");
   const m = texte.match(/-----BEGIN ([A-Z ]+)-----([\s\S]*?)-----END \1-----/);
-  if (!m) return texte;
-  const corps = m[2].replace(/[^A-Za-z0-9+/=]/g, "");
+  // Sans marqueurs BEGIN/END (collage partiel) : on suppose le corps d'une clé PKCS8.
+  const type = m ? m[1] : "PRIVATE KEY";
+  const corps = (m ? m[2] : texte).replace(/[^A-Za-z0-9+/=]/g, "");
+  if (!corps) return texte;
   const lignes = corps.match(/.{1,64}/g) ?? [];
-  return `-----BEGIN ${m[1]}-----\n${lignes.join("\n")}\n-----END ${m[1]}-----\n`;
+  return `-----BEGIN ${type}-----\n${lignes.join("\n")}\n-----END ${type}-----\n`;
 }
 
 /** Description sans secret de la forme d'une clé, pour diagnostiquer un collage raté. */

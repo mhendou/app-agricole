@@ -27,3 +27,12 @@ describe("normaliserClePrivee", () => {
     valide(normaliserClePrivee(privateKey.replace(/\n/g, "\r\n"))));
   it("renvoie undefined si vide", () => expect(normaliserClePrivee(undefined)).toBeUndefined());
 });
+
+describe("normaliserClePrivee sans marqueurs", () => {
+  const corps = privateKey
+    .replace(/-----(BEGIN|END) PRIVATE KEY-----/g, "")
+    .trim();
+  it("accepte le corps seul avec \n littéraux", () =>
+    valide(normaliserClePrivee(corps.replace(/\n/g, "\n"))));
+  it("accepte le corps seul avec vrais sauts de ligne", () => valide(normaliserClePrivee(corps)));
+});

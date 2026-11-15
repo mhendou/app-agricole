@@ -1,14 +1,15 @@
 import Link from "next/link";
-import { Leaf, ShieldCheck, TrendingDown, TrendingUp, Weight } from "lucide-react";
+import { ShieldCheck, TrendingDown, TrendingUp } from "lucide-react";
 import { BarreProportion, Carte, CarteChiffre } from "@/components/ui";
 import { BoutonPartage } from "@/components/BoutonPartage";
-import { BouteilleHuile, Goutte, Paysage } from "@/components/Illustrations";
+import { Goutte, Paysage } from "@/components/Illustrations";
+import { CarteDerniereRecolte } from "@/components/CarteDerniereRecolte";
 import { SyntheseTerrain } from "@/components/SyntheseTerrain";
 import { HistogrammeMensuel } from "@/components/HistogrammeMensuel";
 import { ANNEE_DEBUT_ACCUEIL, lireAnnee, type ParamsPage } from "@/lib/annee";
 import { getRole } from "@/lib/auth/server";
 import { bornesAnnees, chargerDonnees } from "@/lib/donnees";
-import { formatDH, formatEcart, formatKg, formatLitres, formatMm, formatPct } from "@/lib/format";
+import { formatDH, formatMm, formatPct } from "@/lib/format";
 import { pluieAnnee, statsAnnee, statsRecoltes } from "@/lib/stats";
 
 export default async function Page({ searchParams }: { searchParams: ParamsPage }) {
@@ -46,45 +47,7 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
         </div>
       </div>
 
-      <Carte>
-        <div className="flex items-center justify-between">
-          <h2 className="font-titre text-xl font-semibold">Dernière récolte</h2>
-          <Leaf size={22} strokeWidth={1.5} className="text-olive" aria-hidden />
-        </div>
-        {derniere && derniere.kg !== null ? (
-          <div className="mt-3">
-            <p className="text-pierre">Récolte {derniere.annee}</p>
-            <div className="mt-2 grid grid-cols-2 gap-4">
-              <div className="flex flex-col gap-1">
-                <Weight size={30} strokeWidth={1.5} className="shrink-0 text-olive" aria-hidden />
-                <p className="font-titre whitespace-nowrap text-2xl font-semibold text-olive sm:text-3xl">
-                  {formatKg(derniere.kg)}
-                </p>
-              </div>
-              {derniere.litres !== null ? (
-                <div className="flex flex-col gap-1">
-                  <BouteilleHuile taille={32} className="shrink-0 text-olive" />
-                  <p className="font-titre whitespace-nowrap text-2xl font-semibold text-olive sm:text-3xl">
-                    {formatLitres(derniere.litres)}
-                  </p>
-                </div>
-              ) : (
-                <p className="self-center text-pierre">Huile : non renseignée</p>
-              )}
-            </div>
-            {derniere.rendementPct !== null ? (
-              <p className="mt-3 text-pierre">Rendement {formatPct(derniere.rendementPct)}</p>
-            ) : null}
-            {derniere.ecartKg !== null ? (
-              <p className={derniere.ecartKg >= 0 ? "text-olive" : "text-argile-texte"}>
-                {formatEcart(derniere.ecartKg, "kg")} vs {derniere.annee - 1}
-              </p>
-            ) : null}
-          </div>
-        ) : (
-          <p className="mt-3 text-pierre">Aucune récolte enregistrée.</p>
-        )}
-      </Carte>
+      <CarteDerniereRecolte derniere={derniere} />
 
       <div className="grid gap-4 lg:grid-cols-3">
         <CarteChiffre

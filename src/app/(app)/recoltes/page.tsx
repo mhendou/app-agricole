@@ -3,6 +3,7 @@ import { Trophy } from "lucide-react";
 import { Badge, Carte, CarteChiffre, EtatVide } from "@/components/ui";
 import { BandeauSucces } from "@/components/BandeauSucces";
 import { BoutonAjout } from "@/components/BoutonAjout";
+import { CarteDerniereRecolte } from "@/components/CarteDerniereRecolte";
 import { SyntheseTerrain } from "@/components/SyntheseTerrain";
 import { HistogrammeRecoltes } from "@/components/HistogrammeRecoltes";
 import { lireAnnee, type ParamsPage } from "@/lib/annee";
@@ -52,6 +53,8 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
       </div>
 
       <SyntheseTerrain nbOliviers={d.parametres.nb_oliviers} />
+
+      <CarteDerniereRecolte derniere={s.derniere} />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <CarteChiffre

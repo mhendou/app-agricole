@@ -12,6 +12,9 @@ import type { Vente } from "@/lib/types";
 
 export const metadata = { title: "Ventes" };
 
+/** Ordre d'affichage : d'abord les ventes payées, puis ce qu'il reste à encaisser, puis les dons. */
+const ORDRE_STATUT = { payé: 0, "à encaisser": 1, offert: 2 } as const;
+
 const TON_STATUT = { payé: "olive", "à encaisser": "ocre", offert: "pierre" } as const;
 
 function Ligne({ v }: { v: Vente }) {
@@ -55,7 +58,13 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
   const s = statsAnnee(d, annee);
   const ventes = d.ventes
     .filter((v) => v.date.startsWith(String(annee)))
-    .sort((a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id));
+    .sort(
+      (a, b) =>
+        ORDRE_STATUT[a.statut] - ORDRE_STATUT[b.statut] ||
+        b.montant_dh - a.montant_dh ||
+        b.date.localeCompare(a.date) ||
+        b.id.localeCompare(a.id),
+    );
   const totalLitres = s.repartition.maroc.litres + s.repartition.horsMaroc.litres;
 
   return (

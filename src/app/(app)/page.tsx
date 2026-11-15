@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { Leaf, ShieldCheck, TrendingDown, TrendingUp } from "lucide-react";
+import { Leaf, ShieldCheck, TrendingDown, TrendingUp, Weight } from "lucide-react";
 import { BarreProportion, Carte, CarteChiffre } from "@/components/ui";
 import { BoutonPartage } from "@/components/BoutonPartage";
-import { Goutte, Paysage } from "@/components/Illustrations";
+import { BouteilleHuile, Goutte, Paysage } from "@/components/Illustrations";
+import { SyntheseTerrain } from "@/components/SyntheseTerrain";
 import { HistogrammeMensuel } from "@/components/HistogrammeMensuel";
 import { ANNEE_DEBUT_ACCUEIL, lireAnnee, type ParamsPage } from "@/lib/annee";
 import { getRole } from "@/lib/auth/server";
@@ -39,8 +40,51 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
         <div className="relative bg-gradient-to-r from-creme via-creme/85 to-transparent p-6 sm:p-8">
           <p className="text-base text-pierre">Bilan de l&apos;année</p>
           <h1 className="font-titre text-4xl font-semibold text-olive-fonce">{annee}</h1>
+          <div className="mt-2">
+            <SyntheseTerrain nbOliviers={d.parametres.nb_oliviers} variante="discret" />
+          </div>
         </div>
       </div>
+
+      <Carte>
+        <div className="flex items-center justify-between">
+          <h2 className="font-titre text-xl font-semibold">Dernière récolte</h2>
+          <Leaf size={22} strokeWidth={1.5} className="text-olive" aria-hidden />
+        </div>
+        {derniere && derniere.kg !== null ? (
+          <div className="mt-3">
+            <p className="text-pierre">Récolte {derniere.annee}</p>
+            <div className="mt-2 grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-1">
+                <Weight size={30} strokeWidth={1.5} className="shrink-0 text-olive" aria-hidden />
+                <p className="font-titre whitespace-nowrap text-2xl font-semibold text-olive sm:text-3xl">
+                  {formatKg(derniere.kg)}
+                </p>
+              </div>
+              {derniere.litres !== null ? (
+                <div className="flex flex-col gap-1">
+                  <BouteilleHuile taille={32} className="shrink-0 text-olive" />
+                  <p className="font-titre whitespace-nowrap text-2xl font-semibold text-olive sm:text-3xl">
+                    {formatLitres(derniere.litres)}
+                  </p>
+                </div>
+              ) : (
+                <p className="self-center text-pierre">Huile : non renseignée</p>
+              )}
+            </div>
+            {derniere.rendementPct !== null ? (
+              <p className="mt-3 text-pierre">Rendement {formatPct(derniere.rendementPct)}</p>
+            ) : null}
+            {derniere.ecartKg !== null ? (
+              <p className={derniere.ecartKg >= 0 ? "text-olive" : "text-argile-texte"}>
+                {formatEcart(derniere.ecartKg, "kg")} vs {derniere.annee - 1}
+              </p>
+            ) : null}
+          </div>
+        ) : (
+          <p className="mt-3 text-pierre">Aucune récolte enregistrée.</p>
+        )}
+      </Carte>
 
       <div className="grid gap-4 lg:grid-cols-3">
         <CarteChiffre
@@ -97,35 +141,6 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
         </Carte>
 
         <div className="space-y-4">
-          <Carte>
-            <div className="flex items-center justify-between">
-              <h2 className="font-titre text-xl font-semibold">Dernière récolte</h2>
-              <Leaf size={22} strokeWidth={1.5} className="text-olive" aria-hidden />
-            </div>
-            {derniere && derniere.kg !== null ? (
-              <div className="mt-3 space-y-1">
-                <p className="text-pierre">Récolte {derniere.annee}</p>
-                <p className="font-titre flex flex-wrap items-baseline gap-x-4 text-3xl font-semibold text-olive">
-                  <span>{formatKg(derniere.kg)}</span>
-                  {derniere.litres !== null ? <span>{formatLitres(derniere.litres)}</span> : null}
-                </p>
-                {derniere.litres === null ? (
-                  <p className="text-pierre">Huile : non renseignée</p>
-                ) : null}
-                {derniere.rendementPct !== null ? (
-                  <p className="text-pierre">Rendement {formatPct(derniere.rendementPct)}</p>
-                ) : null}
-                {derniere.ecartKg !== null ? (
-                  <p className={derniere.ecartKg >= 0 ? "text-olive" : "text-argile-texte"}>
-                    {formatEcart(derniere.ecartKg, "kg")} vs {derniere.annee - 1}
-                  </p>
-                ) : null}
-              </div>
-            ) : (
-              <p className="mt-3 text-pierre">Aucune récolte enregistrée.</p>
-            )}
-          </Carte>
-
           <Carte>
             <div className="flex items-center gap-3">
               <Goutte />

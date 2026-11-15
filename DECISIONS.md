@@ -18,3 +18,7 @@
 - Récap partageable : image PNG 1080×1350 générée par next/og avec Fraunces et Inter (paquets @fontsource lus dans node_modules, inclus au déploiement via outputFileTracingIncludes). Partage natif (Web Share avec fichier) avec repli téléchargement.
 - PWA : service worker écrit à la main (public/sw.js), pas de plugin. Pages en réseau d'abord, repli sur la dernière version consultée ; la mention « Dernière mise à jour » est écrite dans la page elle-même (donc conservée dans la copie hors connexion). La déconnexion efface le cache de pages. Icônes générées par `npm run icones` (sharp).
 - Revue qualité (T20) : axe-core (WCAG 2.1 AA), cibles ≥ 44 px et absence de défilement horizontal vérifiés à 360 et 1280 px sur tous les écrans (`CAPTURES=1 PW_DATA_DIR=.data-local npx playwright test e2e/qualite.spec.ts`) ; ajout d'un jeton argile-texte (#9A4423) pour le texte sur fond sable, car #B4532A n'atteint pas 4,5:1 ; étiquettes d'axe une sur deux en mobile.
+
+## Modifications après les premiers essais (15 nov. 2026)
+- Fiche du terrain (1,6 ha, Picholine marocaine) en constantes dans `src/lib/terrain.ts` ; le nombre d'oliviers vient de `Parametres.nb_oliviers`. Affichée en haut de l'accueil (petite, 14 px à la demande de Mhend, en dessous du minimum de 16 px du cahier des charges) et en haut de Récoltes.
+- Menu : ordre Accueil / Récoltes / Ventes / Dépenses / Météo ; barre du bas plus contrastée (fond plein, ombre, pastille foncée sur l'onglet actif).

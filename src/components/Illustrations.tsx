@@ -111,3 +111,31 @@ export function SoleilNuage({ taille = 32 }: { taille?: number }) {
     </svg>
   );
 }
+
+/** Petite bouteille d'huile d'olive (pictogramme des litres). */
+export function BouteilleHuile({
+  taille = 28,
+  className = "",
+}: {
+  taille?: number;
+  className?: string;
+}) {
+  return (
+    <svg
+      width={taille}
+      height={taille}
+      viewBox="0 0 32 32"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M13 3h6v4l-1 2.5v3.2c2.6 1.1 4 3.3 4 6.3V27a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2v-8c0-3 1.4-5.2 4-6.3V9.5L13 7V3Z" />
+      <path d="M10 20h12" />
+      <path d="M16 22.4c-1 1.3-1.6 2-1.6 2.9a1.6 1.6 0 0 0 3.2 0c0-.9-.6-1.6-1.6-2.9Z" />
+    </svg>
+  );
+}

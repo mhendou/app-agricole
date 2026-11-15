@@ -13,9 +13,9 @@ type Entree = {
 
 const ENTREES: Entree[] = [
   { href: "/", libelle: "Accueil", Icone: House },
-  { href: "/depenses", libelle: "Dépenses", Icone: Receipt },
-  { href: "/ventes", libelle: "Ventes", Icone: Droplet },
   { href: "/recoltes", libelle: "Récoltes", Icone: Leaf },
+  { href: "/ventes", libelle: "Ventes", Icone: Droplet },
+  { href: "/depenses", libelle: "Dépenses", Icone: Receipt },
   { href: "/meteo", libelle: "Météo", Icone: CloudRain },
 ];
 
@@ -39,7 +39,7 @@ export function BarreOnglets() {
   return (
     <nav
       aria-label="Navigation principale"
-      className="fixed inset-x-0 bottom-0 z-30 border-t border-sauge/40 bg-creme/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-30 border-t-2 border-sauge bg-creme pb-[env(safe-area-inset-bottom)] shadow-[0_-6px_18px_rgba(42,39,34,0.12)] lg:hidden"
     >
       <ul className="mx-auto flex max-w-xl justify-between px-1">
         {ENTREES.map(({ href, libelle, Icone }) => (
@@ -47,14 +47,14 @@ export function BarreOnglets() {
             <Link
               href={`${href}${suffixe}`}
               aria-current={actif(href) ? "page" : undefined}
-              className={`flex min-h-14 flex-col items-center justify-center gap-0.5 rounded-xl text-[0.8125rem] font-medium ${
-                actif(href) ? "text-olive-fonce" : "text-pierre"
+              className={`flex min-h-16 flex-col items-center justify-center gap-0.5 rounded-xl text-sm font-semibold ${
+                actif(href) ? "text-olive-fonce" : "text-encre"
               }`}
             >
               <span
-                className={`flex h-8 w-14 items-center justify-center rounded-full ${actif(href) ? "bg-sauge/40" : ""}`}
+                className={`flex h-9 w-16 items-center justify-center rounded-full ${actif(href) ? "bg-olive-fonce text-creme" : "text-olive"}`}
               >
-                <Icone size={22} strokeWidth={1.5} />
+                <Icone size={26} strokeWidth={actif(href) ? 2 : 1.75} />
               </span>
               {libelle}
             </Link>

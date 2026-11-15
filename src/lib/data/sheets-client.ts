@@ -89,10 +89,25 @@ export function creerClientGoogle(
   };
 }
 
+/**
+ * Reconstruit une clé PEM propre à partir de ce qui a été collé dans la variable
+ * d'environnement : guillemets autour, « \n » littéraux, vrais retours à la ligne,
+ * retours chariot ou espaces à la place des sauts de ligne.
+ */
+export function normaliserClePrivee(brute: string | undefined): string | undefined {
+  if (!brute) return undefined;
+  const texte = brute.trim().replace(/^["']+|["']+$/g, "").replace(/\\r/g, "").replace(/\\n/g, "\n");
+  const m = texte.match(/-----BEGIN ([A-Z ]+)-----([\s\S]*?)-----END \1-----/);
+  if (!m) return texte;
+  const corps = m[2].replace(/[^A-Za-z0-9+/=]/g, "");
+  const lignes = corps.match(/.{1,64}/g) ?? [];
+  return `-----BEGIN ${m[1]}-----\n${lignes.join("\n")}\n-----END ${m[1]}-----\n`;
+}
+
 /** Client réel à partir des variables d'environnement (compte de service). */
 export function creerClientDepuisEnv(env: NodeJS.ProcessEnv = process.env): SheetsClient {
-  const email = env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const cle = env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  const email = env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim();
+  const cle = normaliserClePrivee(env.GOOGLE_PRIVATE_KEY);
   const id = env.SHEET_ID;
   if (!email || !cle || !id) {
     throw new Error(

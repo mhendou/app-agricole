@@ -1,3 +1,4 @@
+import { createPrivateKey } from "node:crypto";
 import { google, type sheets_v4 } from "googleapis";
 import type { Cellule } from "../parse";
 
@@ -104,6 +105,23 @@ export function normaliserClePrivee(brute: string | undefined): string | undefin
   return `-----BEGIN ${m[1]}-----\n${lignes.join("\n")}\n-----END ${m[1]}-----\n`;
 }
 
+/** Description sans secret de la forme d'une clé, pour diagnostiquer un collage raté. */
+export function decrireCle(brute: string | undefined): string {
+  if (!brute) return "variable vide.";
+  const m = brute.match(/-----BEGIN ([A-Z ]+)-----([\s\S]*?)-----END ([A-Z ]+)-----/);
+  const corps = m ? m[2].replace(/[^A-Za-z0-9+/=]/g, "") : "";
+  return [
+    `longueur=${brute.length}`,
+    `début_BEGIN=${/^\s*["']?-----BEGIN [A-Z ]+-----/.test(brute)}`,
+    `type=${m ? m[1] : "absent"}`,
+    `fin_END=${m ? m[3] === m[1] : false}`,
+    `corps_base64=${corps.length}`,
+    `\\n_littéraux=${(brute.match(/\\n/g) ?? []).length}`,
+    `vrais_sauts=${(brute.match(/\n/g) ?? []).length}`,
+    "(attendu : type=PRIVATE KEY, corps_base64 ≈ 1600, longueur ≈ 1700)",
+  ].join(", ");
+}
+
 /** Client réel à partir des variables d'environnement (compte de service). */
 export function creerClientDepuisEnv(env: NodeJS.ProcessEnv = process.env): SheetsClient {
   const email = env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim();
@@ -113,6 +131,11 @@ export function creerClientDepuisEnv(env: NodeJS.ProcessEnv = process.env): Shee
     throw new Error(
       "Variables manquantes : GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY et SHEET_ID sont requises avec DATA_SOURCE=sheets.",
     );
+  }
+  try {
+    createPrivateKey(cle);
+  } catch {
+    throw new Error(`GOOGLE_PRIVATE_KEY illisible. ${decrireCle(env.GOOGLE_PRIVATE_KEY)}`);
   }
   const auth = new google.auth.JWT({
     email,

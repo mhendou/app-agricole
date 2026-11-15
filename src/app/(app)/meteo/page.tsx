@@ -1,6 +1,6 @@
-import { CloudRain, ExternalLink, Sun } from "lucide-react";
+import { CloudRain, ExternalLink } from "lucide-react";
 import { Carte, CarteChiffre, EtatVide } from "@/components/ui";
-import { Goutte } from "@/components/Illustrations";
+import { Goutte, NuagePluie, SoleilJaune, SoleilNuage } from "@/components/Illustrations";
 import { GraphiquePluieMois, GraphiquePluieProduction } from "@/components/GraphiquesMeteo";
 import { lireAnnee, type ParamsPage } from "@/lib/annee";
 import { bornesAnnees, chargerDonnees } from "@/lib/donnees";
@@ -86,25 +86,28 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
           <ul className="divide-y divide-sauge/30">
             {prevision.map((j) => (
               <li key={j.date} className="flex min-h-14 items-center gap-3 py-2">
-                {j.pluie_mm >= 1 ? (
-                  <CloudRain
-                    size={24}
-                    strokeWidth={1.5}
-                    className="shrink-0 text-ciel"
-                    aria-hidden="true"
-                  />
-                ) : (
-                  <Sun
-                    size={24}
-                    strokeWidth={1.5}
-                    className="shrink-0 text-[#8a6a10]"
-                    aria-hidden="true"
-                  />
-                )}
-                <span className="w-28 first-letter:uppercase">{jourSemaine(j.date)}</span>
-                <span className="flex-1 text-pierre">
-                  {j.pluie_mm >= 0.1 ? formatMm(j.pluie_mm) : "Sec"}
-                  {j.probabilite !== null && j.pluie_mm >= 0.1 ? ` · ${j.probabilite} %` : ""}
+                <span className="shrink-0">
+                  {j.pluie_mm >= 1 ? (
+                    <NuagePluie taille={34} />
+                  ) : j.pluie_mm >= 0.1 ? (
+                    <SoleilNuage taille={34} />
+                  ) : (
+                    <SoleilJaune taille={34} />
+                  )}
+                </span>
+                <span className="w-24 first-letter:uppercase">{jourSemaine(j.date)}</span>
+                <span className="flex-1">
+                  <span className="text-pierre">
+                    {j.pluie_mm >= 0.1 ? formatMm(j.pluie_mm) : "Sec"}
+                    {j.probabilite !== null && j.pluie_mm >= 0.1 ? ` · ${j.probabilite} %` : ""}
+                  </span>
+                  {j.pluie_mm >= 0.1 ? (
+                    <span
+                      className="mt-1 block h-2 rounded-full bg-ciel"
+                      style={{ width: `${Math.max(6, Math.min(100, (j.pluie_mm / 20) * 100))}%` }}
+                      aria-hidden="true"
+                    />
+                  ) : null}
                 </span>
                 <span className="whitespace-nowrap font-medium">
                   {j.temp_max !== null ? `${Math.round(j.temp_max)}°` : "—"}

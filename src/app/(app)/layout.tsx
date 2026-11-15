@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { BoutonDeconnexion } from "@/components/BoutonDeconnexion";
 import { BarreOnglets, MenuLateral } from "@/components/Navigation";
+import { IndiceDefilement } from "@/components/IndiceDefilement";
 import { BandeauHorsLigne } from "@/components/PwaClient";
 import { Rameau } from "@/components/Rameau";
 import { SelecteurAnneeUrl } from "@/components/SelecteurAnneeUrl";
@@ -50,6 +51,7 @@ export default async function LayoutApp({ children }: { children: React.ReactNod
           </p>
         </div>
       </div>
+      <IndiceDefilement />
       <Suspense fallback={null}>
         <BarreOnglets />
       </Suspense>

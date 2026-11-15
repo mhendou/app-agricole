@@ -4,7 +4,7 @@ import { BarreProportion, Carte, CarteChiffre } from "@/components/ui";
 import { BoutonPartage } from "@/components/BoutonPartage";
 import { Goutte, Paysage } from "@/components/Illustrations";
 import { HistogrammeMensuel } from "@/components/HistogrammeMensuel";
-import { lireAnnee, type ParamsPage } from "@/lib/annee";
+import { ANNEE_DEBUT_ACCUEIL, lireAnnee, type ParamsPage } from "@/lib/annee";
 import { getRole } from "@/lib/auth/server";
 import { bornesAnnees, chargerDonnees } from "@/lib/donnees";
 import { formatDH, formatEcart, formatKg, formatLitres, formatMm, formatPct } from "@/lib/format";
@@ -17,7 +17,12 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
     searchParams,
     getRole(),
   ]);
-  const annee = lireAnnee(params.annee, bornes.courante, bornes.min, bornes.max);
+  const annee = lireAnnee(
+    params.annee,
+    bornes.courante,
+    Math.min(Math.max(bornes.min, ANNEE_DEBUT_ACCUEIL), bornes.max),
+    bornes.max,
+  );
   const s = statsAnnee(d, annee);
   const recoltes = statsRecoltes(
     d.recoltes.filter((r) => r.annee_recolte <= annee),
@@ -100,17 +105,16 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
             {derniere && derniere.kg !== null ? (
               <div className="mt-3 space-y-1">
                 <p className="text-pierre">Récolte {derniere.annee}</p>
-                <p className="font-titre text-3xl font-semibold text-olive">
-                  {formatKg(derniere.kg)}
+                <p className="font-titre flex flex-wrap items-baseline gap-x-4 text-3xl font-semibold text-olive">
+                  <span>{formatKg(derniere.kg)}</span>
+                  {derniere.litres !== null ? <span>{formatLitres(derniere.litres)}</span> : null}
                 </p>
-                <p>
-                  {derniere.litres !== null
-                    ? formatLitres(derniere.litres)
-                    : "Huile : non renseignée"}
-                  {derniere.rendementPct !== null
-                    ? ` · rendement ${formatPct(derniere.rendementPct)}`
-                    : ""}
-                </p>
+                {derniere.litres === null ? (
+                  <p className="text-pierre">Huile : non renseignée</p>
+                ) : null}
+                {derniere.rendementPct !== null ? (
+                  <p className="text-pierre">Rendement {formatPct(derniere.rendementPct)}</p>
+                ) : null}
                 {derniere.ecartKg !== null ? (
                   <p className={derniere.ecartKg >= 0 ? "text-olive" : "text-argile-texte"}>
                     {formatEcart(derniere.ecartKg, "kg")} vs {derniere.annee - 1}

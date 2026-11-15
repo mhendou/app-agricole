@@ -70,3 +70,44 @@ export function Paysage({ className = "" }: { className?: string }) {
     </svg>
   );
 }
+
+/** Soleil jaune (ciel dégagé). */
+export function SoleilJaune({ taille = 32 }: { taille?: number }) {
+  return <Soleil taille={taille} />;
+}
+
+/** Nuage gris-bleu avec gouttes bleues (jour de pluie). */
+export function NuagePluie({ taille = 32 }: { taille?: number }) {
+  return (
+    <svg width={taille} height={taille} viewBox="0 0 40 40" aria-hidden="true">
+      <path
+        d="M11 24 a7 7 0 0 1 1.5-13.8 A9 9 0 0 1 30 12 a6.2 6.2 0 0 1-.5 12 Z"
+        fill="#9fb4c2"
+      />
+      <g stroke="#3f7fa6" strokeWidth="2.6" strokeLinecap="round">
+        <line x1="13" y1="28" x2="11" y2="34" />
+        <line x1="21" y1="28" x2="19" y2="35" />
+        <line x1="29" y1="28" x2="27" y2="34" />
+      </g>
+    </svg>
+  );
+}
+
+/** Soleil voilé : quelques gouttes (moins de 1 mm). */
+export function SoleilNuage({ taille = 32 }: { taille?: number }) {
+  return (
+    <svg width={taille} height={taille} viewBox="0 0 40 40" aria-hidden="true">
+      <circle cx="15" cy="15" r="7" fill="#d9a441" />
+      <g stroke="#d9a441" strokeWidth="2.4" strokeLinecap="round">
+        <line x1="15" y1="2" x2="15" y2="5" />
+        <line x1="3" y1="15" x2="6" y2="15" />
+        <line x1="6" y1="6" x2="8" y2="8" />
+        <line x1="24" y1="6" x2="22" y2="8" />
+      </g>
+      <path
+        d="M16 32 a5.5 5.5 0 0 1 1-10.9 A7 7 0 0 1 31 22.5 a4.8 4.8 0 0 1-.4 9.5 Z"
+        fill="#c9d3db"
+      />
+    </svg>
+  );
+}

@@ -12,3 +12,6 @@ export function lireAnnee(
 }
 
 export type ParamsPage = Promise<{ [cle: string]: string | string[] | undefined }>;
+
+/** Première année proposée par le sélecteur de l'écran d'accueil. */
+export const ANNEE_DEBUT_ACCUEIL = 2026;

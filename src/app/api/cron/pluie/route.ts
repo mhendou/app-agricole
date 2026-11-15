@@ -1,9 +1,10 @@
 import { timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
 import { getDataSource } from "@/lib/data";
-import { majPluieRecente } from "@/lib/pluie-service";
+import { majPluieAuto } from "@/lib/pluie-service";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 60; // le premier passage rattrape tout l'historique depuis 2013
 
 function secretValide(req: Request): boolean {
   const secret = process.env.CRON_SECRET;
@@ -19,7 +20,7 @@ function secretValide(req: Request): boolean {
 export async function GET(req: Request) {
   if (!secretValide(req)) return NextResponse.json({ erreur: "Non autorisé." }, { status: 401 });
   try {
-    return NextResponse.json(await majPluieRecente(getDataSource()));
+    return NextResponse.json(await majPluieAuto(getDataSource()));
   } catch (e) {
     console.error(e);
     return NextResponse.json({ erreur: "Mise à jour de la pluie impossible." }, { status: 502 });

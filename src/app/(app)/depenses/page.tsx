@@ -106,8 +106,8 @@ export default async function Page({ searchParams }: { searchParams: ParamsPage 
                     <>
                       <IconeCategorie categorie={l.categorie} />
                       <div className="min-w-0 flex-1">
-                        <p className="truncate font-medium">{l.description || l.categorie}</p>
-                        <p className="truncate text-base text-pierre">
+                        <p className="break-words font-medium">{l.description || l.categorie}</p>
+                        <p className="break-words text-base text-pierre">
                           {formatDate(l.date)}
                           {l.beneficiaire ? ` · ${l.beneficiaire}` : ""}
                           {l.mode_paiement ? ` · ${l.mode_paiement}` : ""}

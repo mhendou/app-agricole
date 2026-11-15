@@ -1,6 +1,6 @@
 import { ajouterJours, aujourdhui } from "./date";
 import type { DataSource } from "./data/source";
-import { decouperParAnnee, recupererHistorique } from "./meteo";
+import { PREMIER_JOUR, decouperParAnnee, recupererHistorique } from "./meteo";
 
 type Fetch = Parameters<typeof recupererHistorique>[4];
 
@@ -51,4 +51,28 @@ export async function rattraperPluie(
     journal(`${t.debut.slice(0, 4)} : ${lignes.length} jours reçus, ${n} nouveaux`);
   }
   return { recus, ajoutes };
+}
+
+/** Part minimale de l'historique déjà présente pour se contenter de la mise à jour récente. */
+const SEUIL_HISTORIQUE = 0.95;
+
+/**
+ * Mise à jour quotidienne « qui se répare toute seule » : si l'onglet Pluie est vide ou très
+ * incomplet (premier lancement en ligne), rattrape tout l'historique depuis 2013 ; sinon, ajoute
+ * seulement les derniers jours.
+ */
+export async function majPluieAuto(
+  ds: DataSource,
+  f?: Fetch,
+  maintenant: Date = new Date(),
+): Promise<{ mode: "historique" | "recent"; recus: number; ajoutes: number }> {
+  const { pluie } = await ds.lireTout();
+  const hier = ajouterJours(aujourdhui(maintenant), -1);
+  const attendus = Math.round((Date.parse(hier) - Date.parse(PREMIER_JOUR)) / 86_400_000) + 1;
+  if (pluie.length < attendus * SEUIL_HISTORIQUE) {
+    const r = await rattraperPluie(ds, PREMIER_JOUR, f, maintenant);
+    return { mode: "historique", recus: r.recus, ajoutes: r.ajoutes };
+  }
+  const r = await majPluieRecente(ds, 10, f, maintenant);
+  return { mode: "recent", recus: r.recus, ajoutes: r.ajoutes };
 }

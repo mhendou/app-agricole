@@ -75,6 +75,20 @@ body {
   animation: croissance 0.7s ease-out both;
 }
 
+@keyframes rebond {
+  0%,
+  100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.anim-rebond {
+  animation: rebond 1.6s ease-in-out infinite;
+}
+
 .hachure {
   background-image: repeating-linear-gradient(
     45deg,
@@ -87,7 +101,8 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .anim-apparition,
-  .anim-croissance {
+  .anim-croissance,
+  .anim-rebond {
     animation: none;
   }
   * {

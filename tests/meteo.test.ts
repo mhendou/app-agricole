@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { MockDataSource } from "@/lib/data/mock";
 import { decouperParAnnee, prevision7j, recupererHistorique, urlHistorique } from "@/lib/meteo";
-import { majPluieRecente, rattraperPluie } from "@/lib/pluie-service";
+import { majPluieAuto, majPluieRecente, rattraperPluie } from "@/lib/pluie-service";
 import { GET } from "@/app/api/cron/pluie/route";
 
 const reponse = (data: unknown) => ({ ok: true, status: 200, json: async () => data });
@@ -107,6 +107,25 @@ describe("mises à jour de la pluie", () => {
     const r = await rattraperPluie(ds, "2024-01-01", f, new Date("2026-01-10T12:00:00Z"));
     expect(f).toHaveBeenCalledTimes(3);
     expect(r.ajoutes).toBe(366 + 365 + 9);
+  });
+});
+
+describe("mise à jour automatique", () => {
+  const f = () =>
+    vi.fn().mockImplementation(async (url: string) => {
+      const debut = /start_date=([\d-]+)/.exec(url)![1];
+      const fin = /end_date=([\d-]+)/.exec(url)![1];
+      const n = Math.round((Date.parse(fin) - Date.parse(debut)) / 86400000) + 1;
+      return reponse(archive(debut, n));
+    });
+  it("rattrape tout l'historique quand l'onglet Pluie est vide, puis passe en mode récent", async () => {
+    const now = new Date("2026-11-14T12:00:00Z");
+    const a = await majPluieAuto(ds, f(), now);
+    expect(a.mode).toBe("historique");
+    expect(a.ajoutes).toBeGreaterThan(4900);
+    const b = await majPluieAuto(ds, f(), now);
+    expect(b.mode).toBe("recent");
+    expect(b.ajoutes).toBe(0);
   });
 });
 
